@@ -50,6 +50,20 @@ namespace ADO_Disconnected
             newCave["Marque"] = "Grand Cru";
             newCave["Annee"] = 1982;
             cave.Rows.Add(newCave); // ajout de la ligne à la table "Cave"
+
+            cave.LoadDataRow(new object[] { null, "Bourgogne", 2012, "Prix 2012" }, true); // une autre méthode d'ajout de lignes
+            cave.LoadDataRow(new object[] { null, "Saint-Emilion", 1983, "Cuvée Prestige" }, true);
+            cave.LoadDataRow(new object[] { null, "Pommard", 1959, "Clos Blanc" }, true);
+
+            printTable(cave);
+        }
+
+        static void printTable(DataTable table)
+        {
+            foreach (DataRow r in table.Rows)
+            {
+                Console.WriteLine(string.Format("row : {0} | {1} | {2} | {3} || {4}", r["ID"], r["Vin"], r["Annee"], r["Marque"], r["MarqueEtAnnee"]));
+            }
         }
     }
 }
